@@ -87,9 +87,11 @@ user node['hops']['mr']['user'] do
 end
 
 user node['hops']['yarnapp']['user'] do
+  home "/home/#{node['hops']['yarnapp']['user']}"
   gid node['hops']['group']
   system true
   shell "/bin/bash"
+  manage_home true
   action :create
   not_if "getent passwd #{node['hops']['yarnapp']['user']}"
 end
